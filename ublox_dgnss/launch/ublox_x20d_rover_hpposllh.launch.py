@@ -17,13 +17,20 @@ def generate_launch_description():
   )
 
   params = [{'DEVICE_FAMILY': LaunchConfiguration("device_family")},
-            {'CFG_USBOUTPROT_NMEA': False},
-            {'CFG_RATE_MEAS': 40},
-            {'CFG_RATE_NAV': 1},
+            # {'CFG_USBOUTPROT_NMEA': False},
+            # {'CFG_USBOUTPROT_RTCM3X': False},
+            # {'CFG_USBOUTPROT_UBX': True},
+            # {'CFG_USBINPROT_RTCM3X': True},
+            # {'CFG_RATE_MEAS': 40},
+            # {'CFG_RATE_NAV': 1},
             # USB output (for 0x01ab CDC-ACM interface)
-            {'CFG_MSGOUT_UBX_NAV_HPPOSLLH_USB': 1},
-            {'CFG_MSGOUT_UBX_NAV_STATUS_USB': 5},
-            {'CFG_MSGOUT_UBX_NAV_DAHEADING_USB': 1},
+            # {'CFG_MSGOUT_UBX_NAV_HPPOSLLH_USB': 1},
+            # {'CFG_MSGOUT_UBX_NAV_STATUS_USB': 5},
+            # {'CFG_MSGOUT_UBX_NAV_DAHEADING_USB': 40},
+            {'CFG_MSGOUT_UBX_NAV_CLOCK_USB': 1},
+            # {'CFG_MSGOUT_UBX_NAV_SIG_USB': 1},
+            # {'CFG_MSGOUT_UBX_NAV_SAT_USB': 1},
+            {'CFG_MSGOUT_UBX_MON_COMMS_USB': 1},
             # # UART1 output (for 0x0513 vendor-specific interface)
             # {'CFG_MSGOUT_UBX_NAV_HPPOSLLH_UART1': 1},
             # {'CFG_MSGOUT_UBX_NAV_STATUS_UART1': 5},

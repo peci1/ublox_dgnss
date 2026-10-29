@@ -778,7 +778,7 @@ private:
 
     // Check if the parameter exists
     if (!param_client->has_parameter(DEV_STRING_PARAM_NAME)) {
-      if (device_family_ == ublox_dgnss::DeviceFamily::X20P) {
+      if (device_family_ == ublox_dgnss::DeviceFamily::X20P || device_family_ == ublox_dgnss::DeviceFamily::X20D) {
         // X20P: Multiple USB interfaces available
         RCLCPP_INFO(
           this->get_logger(), "Parameter %s not found, will use first available %s USB interface.",
@@ -794,7 +794,7 @@ private:
 
     // Get the parameter value
     serial_str_ = param_client->get_parameter<std::string>(DEV_STRING_PARAM_NAME);
-    if (device_family_ == ublox_dgnss::DeviceFamily::X20P) {
+    if (device_family_ == ublox_dgnss::DeviceFamily::X20P || device_family_ == ublox_dgnss::DeviceFamily::X20D) {
       RCLCPP_INFO(
         this->get_logger(),
         "Parameter %s found with value: %s (will connect to matching %s USB interface)",
