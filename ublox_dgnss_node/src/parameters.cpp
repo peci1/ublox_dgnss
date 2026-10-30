@@ -350,11 +350,19 @@ void ParameterManager::log_parameter_cache_state()
     }
   }
 
-  RCLCPP_DEBUG(
-    logger_,
-    "Parameter cache state - " \
-    "Total: %zu, Initial: %zu, User: %zu, Loaded: %zu, Valset: %zu, Valget: %zu",
-    total_params, initial_params, user_params, loaded_params, valset_params, valget_params);
+  if (valget_params > 0 || valset_params > 0) {
+    RCLCPP_INFO(
+      logger_,
+      "Parameter cache state - " \
+      "Total: %zu, Initial: %zu, User: %zu, Loaded: %zu, Valset: %zu, Valget: %zu",
+      total_params, initial_params, user_params, loaded_params, valset_params, valget_params);
+  } else {
+    RCLCPP_DEBUG(
+      logger_,
+      "Parameter cache state - " \
+      "Total: %zu, Initial: %zu, User: %zu, Loaded: %zu, Valset: %zu, Valget: %zu",
+      total_params, initial_params, user_params, loaded_params, valset_params, valget_params);
+  }
 }
 
 bool ParameterManager::is_valid_parameter(const std::string & param_name)

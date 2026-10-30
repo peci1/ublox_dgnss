@@ -37,6 +37,8 @@ def generate_launch_description():
             {'DEVICE_SERIAL_STRING': device_serial_string},
             {'FRAME_ID': frame_id},
             {'CFG_USBOUTPROT_NMEA': False},
+            {'CFG_USBOUTPROT_RTCM3X': False},
+            {'CFG_USBOUTPROT_UBX': True},
             {'CFG_RATE_MEAS': 40},
             {'CFG_RATE_NAV': 1},
             # USB output (for 0x01ab CDC-ACM interface)
@@ -44,6 +46,7 @@ def generate_launch_description():
             {'CFG_MSGOUT_UBX_NAV_STATUS_USB': 5},
             {'CFG_MSGOUT_UBX_NAV_COV_USB': 1},
             {'CFG_MSGOUT_UBX_NAV_DAHEADING_USB': 1},
+            {'CFG_MSGOUT_NMEA_ID_THS_USB': 0},
             # # UART1 output (for 0x0513 vendor-specific interface)
             # {'CFG_UART1INPROT_UBX': True},
             # {'CFG_UART1OUTPROT_UBX': True},
@@ -64,7 +67,7 @@ def generate_launch_description():
     name='ublox_dgnss_container',
     namespace='',
     package='rclcpp_components',
-    executable='component_container_mt',
+    executable='component_container',
     arguments=['--ros-args', '--log-level', LaunchConfiguration('log_level')],
     composable_node_descriptions=[
       ComposableNode(

@@ -122,23 +122,23 @@ const ubx_cfg_item_t CFG_SIGNAL_BDS_B2A_ENA = {"CFG_SIGNAL_BDS_B2A_ENA", 0x10310
 const ubx_cfg_item_t CFG_SIGNAL_BDS_B3_ENA = {"CFG_SIGNAL_BDS_B3_ENA", 0x10310010, L, 1, NA};
 const ubx_cfg_item_t CFG_SIGNAL_QZSS_L5_ENA = {"CFG_SIGNAL_QZSS_L5_ENA", 0x10310017, L, 1, NA};
 
-// @only: X20P
+// @only: X20P,X20D
 const ubx_cfg_item_t CFG_SIGNAL_QZSS_L1CB_ENA =
 {"CFG_SIGNAL_QZSS_L1CB_ENA", 0x10310039, L, 1, NA};
 
-// cfg signal NavIC since X20P
+// cfg signal NavIC since X20
 // @only: X20P,X20D
 const ubx_cfg_item_t CFG_SIGNAL_NAVIC_ENA = {"CFG_SIGNAL_NAVIC_ENA", 0x10310026, L, 1, NA};
 const ubx_cfg_item_t CFG_SIGNAL_NAVIC_L5_ENA = {"CFG_SIGNAL_NAVIC_L5_ENA", 0x1031001d, L, 1, NA};
 
-// cfg bds - BeiDou system configuration since X20P
-// @only: X20P
+// cfg bds - BeiDou system configuration since X20
+// @only: X20P,X20D
 const ubx_cfg_item_t CFG_BDS_D1D2_NAVDATA = {"CFG_BDS_D1D2_NAVDATA", 0x20340009, E1, 1, NA};
 enum CFG_BDS_D1D2_NAVDATA_ENUM {BDS_NAVDATA_ALL = 0, BDS_NAVDATA_B1I = 1};
 const ubx_cfg_item_t CFG_BDS_USE_GEO_PRN = {"CFG_BDS_USE_GEO_PRN", 0x10340014, L, 1, NA};
 
-// cfg navcor - navigation corrections configuration since X20P
-// @only: X20P
+// cfg navcor - navigation corrections configuration since X20
+// @only: X20P,X20D
 const ubx_cfg_item_t CFG_NAVCOR_ENABLE_GAL_HAS =
 {"CFG_NAVCOR_ENABLE_GAL_HAS", 0x100d0002, L, 1, NA};
 
@@ -149,7 +149,7 @@ const ubx_cfg_item_t CFG_NAVCOR_ENABLE_GAL_HAS =
 const ubx_cfg_item_t CFG_SPARTN_USE_SOURCE = {"CFG_SPARTN_USE_SOURCE", 0x20a70001, E1, 1, NA};
 
 // cfg tmode - time mode configuration
-// @exclude: F9R
+// @exclude: F9R,X20D
 const ubx_cfg_item_t CFG_TMODE_MODE = {"CFG_TMODE_MODE", 0x20030001, E1, 1, NA};
 enum CFG_TMODE_MODE_ENUM {DISABLED = 0, SURVEY_IN = 1, FIXED = 2};
 const ubx_cfg_item_t CFG_TMODE_POS_TYPE = {"CFG_TMODE_POS_TYPE", 0x20030002, E1, 1, NA};
@@ -255,7 +255,7 @@ enum CFG_RATE_TIMEREF_ENUM
   ALIGN_GAL = 4,         // Align measurements to Galileo time
 };
 
-// Default: included in all families (F9P, F9R, X20P)
+// Default: included in all families (F9P, F9R, X20)
 
 // cfg sfimu - sensor fusion IMU configuration
 // @only: F9R
@@ -297,8 +297,6 @@ const ubx_cfg_item_t CFG_MSGOUT_UBX_NAV_CLOCK_USB =
 {"CFG_MSGOUT_UBX_NAV_CLOCK_USB", 0x20910068, U1, 0, NA};
 const ubx_cfg_item_t CFG_MSGOUT_UBX_NAV_COV_USB =
 {"CFG_MSGOUT_UBX_NAV_COV_USB", 0x20910086, U1, 0, NA};
-const ubx_cfg_item_t CFG_MSGOUT_UBX_NAV_DAHEADING_USB =
-{"CFG_MSGOUT_UBX_NAV_DAHEADING_USB", 0x209103e2, U1, 0, NA};
 const ubx_cfg_item_t CFG_MSGOUT_UBX_NAV_DOP_USB =
 {"CFG_MSGOUT_UBX_NAV_DOP_USB", 0x2091003b, U1, 0, NA};
 const ubx_cfg_item_t CFG_MSGOUT_UBX_NAV_EOE_USB =
@@ -354,8 +352,10 @@ const ubx_cfg_item_t CFG_MSGOUT_UBX_RXM_SPARTN_USB =
 {"CFG_MSGOUT_UBX_RXM_SPARTN_USB", 0x20910608, U1, 0, NA};
 
 // @only: X20D
-const ubx_cfg_item_t CFG_MSGOUT_UBX_NAV_HEADING_USB =
-{"CFG_MSGOUT_UBX_NAV_HEADING_USB", 0x209103e2, U1, 0, NA};
+const ubx_cfg_item_t CFG_MSGOUT_UBX_NAV_DAHEADING_USB =
+{"CFG_MSGOUT_UBX_NAV_DAHEADING_USB", 0x209103e2, U1, 0, NA};
+const ubx_cfg_item_t CFG_MSGOUT_NMEA_ID_THS_USB =
+{"CFG_MSGOUT_NMEA_ID_THS_USB", 0x209100e5, U1, 0, NA};
 
 // @only: F9R
 const ubx_cfg_item_t CFG_MSGOUT_UBX_ESF_MEAS_USB =
@@ -363,7 +363,7 @@ const ubx_cfg_item_t CFG_MSGOUT_UBX_ESF_MEAS_USB =
 const ubx_cfg_item_t CFG_MSGOUT_UBX_ESF_STATUS_USB =
 {"CFG_MSGOUT_UBX_ESF_STATUS_USB", 0x20910108, U1, 0, NA};
 
-// X20P UART1/UART2 UBX message output parameters (from X20P interface description)
+// X20 UART1/UART2 UBX message output parameters (from X20P interface description)
 const ubx_cfg_item_t CFG_MSGOUT_UBX_NAV_HPPOSLLH_UART1 =
 {"CFG_MSGOUT_UBX_NAV_HPPOSLLH_UART1", 0x20910034, U1, 0, NA};
 const ubx_cfg_item_t CFG_MSGOUT_UBX_NAV_HPPOSLLH_UART2 =
@@ -624,7 +624,7 @@ ubx_cfg_item_map_t ubxKeyCfgItemMap = {
   // {CFG_MSGOUT_RTCM_3X_TYPE4072_0_SPI.ubx_key_id, CFG_MSGOUT_RTCM_3X_TYPE4072_0_SPI},
   {CFG_RTCM_DF028_OUT.ubx_key_id, CFG_RTCM_DF028_OUT},
 
-  // X20P UART1/UART2 UBX message output parameters
+  // X20 UART1/UART2 UBX message output parameters
   {CFG_MSGOUT_UBX_NAV_HPPOSLLH_UART1.ubx_key_id, CFG_MSGOUT_UBX_NAV_HPPOSLLH_UART1},
   {CFG_MSGOUT_UBX_NAV_HPPOSLLH_UART2.ubx_key_id, CFG_MSGOUT_UBX_NAV_HPPOSLLH_UART2},
   {CFG_MSGOUT_UBX_NAV_STATUS_UART1.ubx_key_id, CFG_MSGOUT_UBX_NAV_STATUS_UART1},
@@ -633,6 +633,9 @@ ubx_cfg_item_map_t ubxKeyCfgItemMap = {
   {CFG_MSGOUT_UBX_NAV_COV_UART2.ubx_key_id, CFG_MSGOUT_UBX_NAV_COV_UART2},
   {CFG_MSGOUT_UBX_RXM_COR_UART1.ubx_key_id, CFG_MSGOUT_UBX_RXM_COR_UART1},
   {CFG_MSGOUT_UBX_RXM_COR_UART2.ubx_key_id, CFG_MSGOUT_UBX_RXM_COR_UART2},
+
+  // X20 USB NMEA message output parameters
+  {CFG_MSGOUT_NMEA_ID_THS_USB.ubx_key_id, CFG_MSGOUT_NMEA_ID_THS_USB},
 
 
   // removed in latest F9P 1.5 firmware

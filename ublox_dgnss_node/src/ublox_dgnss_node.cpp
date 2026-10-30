@@ -4396,6 +4396,9 @@ private:
     // // ubx_cfg_->cfg_val_set_key_append(ubx::cfg::CFG_USBOUTPROT_NMEA, true);
     // ubx_cfg_->cfg_val_set_poll_async();
 
+    // magic sleep that makes the configuration work reliably on X20D
+    std::this_thread::sleep_for(2s);
+
     // Original ublox_init_all_cfg_items_async() filters for PARAM_USER only
     RCLCPP_DEBUG(get_logger(), "ublox_init_all_cfg_items_async() ...");
     ublox_init_all_cfg_items_async();

@@ -1,6 +1,6 @@
 """ Launch ublox_dgnss_node publishing high precision Lon/Lat messages"""
 import launch
-from launch_ros.actions import ComposableNodeContainer
+from launch_ros.actions import ComposableNodeContainer, Node
 from launch_ros.descriptions import ComposableNode
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import TextSubstitution
@@ -17,20 +17,17 @@ def generate_launch_description():
   )
 
   params = [{'DEVICE_FAMILY': LaunchConfiguration("device_family")},
-            # {'CFG_USBOUTPROT_NMEA': False},
-            # {'CFG_USBOUTPROT_RTCM3X': False},
-            # {'CFG_USBOUTPROT_UBX': True},
-            # {'CFG_USBINPROT_RTCM3X': True},
-            # {'CFG_RATE_MEAS': 40},
-            # {'CFG_RATE_NAV': 1},
+            {'CFG_USBOUTPROT_NMEA': False},
+            {'CFG_USBOUTPROT_RTCM3X': False},
+            {'CFG_USBOUTPROT_UBX': True},
+            {'CFG_RATE_MEAS': 40},
+            {'CFG_RATE_NAV': 1},
             # USB output (for 0x01ab CDC-ACM interface)
-            # {'CFG_MSGOUT_UBX_NAV_HPPOSLLH_USB': 1},
-            # {'CFG_MSGOUT_UBX_NAV_STATUS_USB': 5},
-            # {'CFG_MSGOUT_UBX_NAV_DAHEADING_USB': 40},
-            {'CFG_MSGOUT_UBX_NAV_CLOCK_USB': 1},
-            # {'CFG_MSGOUT_UBX_NAV_SIG_USB': 1},
-            # {'CFG_MSGOUT_UBX_NAV_SAT_USB': 1},
-            {'CFG_MSGOUT_UBX_MON_COMMS_USB': 1},
+            {'CFG_MSGOUT_UBX_NAV_HPPOSLLH_USB': 1},
+            {'CFG_MSGOUT_UBX_NAV_STATUS_USB': 5},
+            {'CFG_MSGOUT_UBX_NAV_COV_USB': 1},
+            {'CFG_MSGOUT_UBX_NAV_DAHEADING_USB': 1},
+            {'CFG_MSGOUT_NMEA_ID_THS_USB': 0},
             # # UART1 output (for 0x0513 vendor-specific interface)
             # {'CFG_MSGOUT_UBX_NAV_HPPOSLLH_UART1': 1},
             # {'CFG_MSGOUT_UBX_NAV_STATUS_UART1': 5},
@@ -45,7 +42,7 @@ def generate_launch_description():
     name='ublox_dgnss_container',
     namespace='',
     package='rclcpp_components',
-    executable='component_container_mt',
+    executable='component_container',
     arguments=['--ros-args', '--log-level', LaunchConfiguration('log_level')],
     composable_node_descriptions=[
       ComposableNode(
@@ -56,6 +53,14 @@ def generate_launch_description():
       )
     ]
   )
+  # container1 = Node(
+  #   name='ublox_dgnss_container',
+  #   namespace='',
+  #   package='ublox_dgnss_node',
+  #   executable='ublox_dgnss_node',
+  #   arguments=['--ros-args', '--log-level', LaunchConfiguration('log_level')],
+  #   parameters=params
+  # )
 
   return launch.LaunchDescription([
     log_level_arg,
